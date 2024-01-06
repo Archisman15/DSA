@@ -1,0 +1,17 @@
+//Optimal Approach #1
+vector<int> findMissingRepeatingNumbers(vector < int > a) {
+    long long n=a.size();
+    long long sN=(n*(n+1))/2;
+    long long sN2=(n*(n+1)*(2*n+1))/6;
+    long long S=0, S2=0;
+    for (int i = 0; i < n; i++) {
+      S += a[i];
+      S2 += (a[i] * a[i]);
+    }
+    long long diff1 = sN - S;      // diff1=Q-P
+    long long diff2 = sN2 - S2;    // diff2=Q2-P2
+    long long add = diff2 / diff1; // add=Q+P
+    int q = (diff1 + add) / 2;
+    int p = add - q;
+    return {p,q};
+}
